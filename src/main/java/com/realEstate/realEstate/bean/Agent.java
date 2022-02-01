@@ -1,33 +1,45 @@
 package com.realEstate.realEstate.bean;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
 public class Agent {
     @Id
-//    @SequenceGenerator(name="agent_id_seq_gen", sequenceName = "agent_id_seq",allocationSize=1);
-//    @GeneratedValue(generator="agent_id_seq_gen", strategy=GenerationType.AUTO);
+    @SequenceGenerator(name="agent_id_seq_gen", sequenceName = "agent_id_seq",allocationSize=1)
+    @GeneratedValue(generator="agent_id_seq_gen", strategy=GenerationType.AUTO)
     private int id;
 
     @Column
     private String email;
     @Column
     private String password;
-    @Column
-    private int role_id;
+
     @Column
     private String name;
+
+    @ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.DETACH)
+    @JoinTable(
+            name = "agent_profile",
+            joinColumns = {
+                    @JoinColumn(name = "agent_id",referencedColumnName = "ID")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "profile_id",referencedColumnName = "ID")
+            }
+    )
+    private List<Profile> profiles;
 
     public Agent() {
     }
 
-    public Agent(int id, String email, String password, int role_id, String name) {
+    public Agent(int id, String email, String password, String name, List<Profile> profiles) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.role_id = role_id;
         this.name = name;
+        this.profiles=profiles;
     }
 
     public int getId() {
@@ -54,14 +66,6 @@ public class Agent {
         this.password = password;
     }
 
-    public int getRole_id() {
-        return role_id;
-    }
-
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
-    }
-
     public String getName() {
         return name;
     }
@@ -70,13 +74,20 @@ public class Agent {
         this.name = name;
     }
 
+    public List<Profile> getProfiles() {
+        return profiles;
+    }
+
+    public void setProfiles(List<Profile> profiles) {
+        this.profiles = profiles;
+    }
+
     @Override
     public String toString() {
         return "Agent{" +
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", role_id=" + role_id +
                 ", name='" + name + '\'' +
                 '}';
     }
