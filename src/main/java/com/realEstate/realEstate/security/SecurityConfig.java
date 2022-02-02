@@ -21,8 +21,9 @@ import java.util.Arrays;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
-//    @Autowired
-//    private UserDetailsService userDetailsServiceImpl;
+    @Autowired
+//    private AgentDetailsServiceImpl agentDetailsServiceIml;
+    private UserDetailsService userDetailsServiceImpl;
 
     @Autowired
     private AuthenticationEntryPointImpl authenticationEntryPointImpl;
@@ -47,12 +48,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                         -> requests
                         .anyRequest().permitAll()
         );
+
         http.exceptionHandling()
                 .accessDeniedHandler(accessDeniedHandlerImpl)
                 .authenticationEntryPoint(authenticationEntryPointImpl);
 
         http.formLogin()
-                .usernameParameter("username")
+                .usernameParameter("email")
                 .passwordParameter("password")
                 .successHandler(authenticationSuccessHandlerImpl)
                 .failureHandler(authenticationFailureHandlerImpl);
@@ -67,15 +69,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         return new BCryptPasswordEncoder(11);
     }
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(new BCryptPasswordEncoder(11));
-//    }
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(new BCryptPasswordEncoder(11));
+    }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOriginPattern("*"); // You should only set trusted site here. e.g. http://localhost:4200 means only this site can access.
+        configuration.addAllowedOriginPattern("*");
         configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","HEAD","OPTIONS"));
         configuration.addAllowedHeader("*");
         configuration.setAllowCredentials(true);
