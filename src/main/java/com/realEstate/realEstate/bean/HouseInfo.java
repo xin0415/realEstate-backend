@@ -32,11 +32,13 @@ public class HouseInfo {
     private String status;
     @Column
     private String type;
+    @Column
+    private int price;
 
     public HouseInfo() {
     }
 
-    public HouseInfo(int id, Date postdate, int owner_id, String address1, String address2, String city, String state, String zip, int agent_id, String image, String status, String type) {
+    public HouseInfo(int id, Date postdate, int owner_id, String address1, String address2, String city, String state, String zip, int agent_id, String image, String status, String type, int price) {
         this.id = id;
         this.postdate = postdate;
         this.owner_id = owner_id;
@@ -49,6 +51,7 @@ public class HouseInfo {
         this.image = image;
         this.status = status;
         this.type = type;
+        this.price=price;
     }
 
     public int getId() {
@@ -147,6 +150,14 @@ public class HouseInfo {
         this.type = type;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "HouseInfo{" +
@@ -162,6 +173,7 @@ public class HouseInfo {
                 ", image='" + image + '\'' +
                 ", status='" + status + '\'' +
                 ", type='" + type + '\'' +
+                ", price=" + price +
                 '}';
     }
 }
