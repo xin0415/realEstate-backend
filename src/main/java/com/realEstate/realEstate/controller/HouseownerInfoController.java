@@ -16,5 +16,5 @@ public class HouseownerInfoController {
     private HouseownerInfoService houseownerInfoService;
 
     @PostMapping
-    public Response save(@RequestBody HouseownerInfo houseownerInfo){return houseownerInfoService.save(houseownerInfo)}
+    public Response save(@RequestBody HouseownerInfo houseownerInfo){return houseownerInfoService.save(houseownerInfo);}
 }

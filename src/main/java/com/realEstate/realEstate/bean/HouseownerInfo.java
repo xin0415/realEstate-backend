@@ -10,7 +10,7 @@ public class HouseownerInfo {
     @GeneratedValue(generator = "houseowner_info_id_seq_gen",strategy = GenerationType.AUTO)
     private int id;
     @Column
-    private String ownername;
+    private String name;
     @Column
     private String phone;
     @Column
@@ -21,7 +21,7 @@ public class HouseownerInfo {
 
     public HouseownerInfo(int id, String ownername, String phone, String email) {
         this.id = id;
-        this.ownername = ownername;
+        this.name = ownername;
         this.phone = phone;
         this.email = email;
     }
@@ -34,12 +34,12 @@ public class HouseownerInfo {
         this.id = id;
     }
 
-    public String getOwnername() {
-        return ownername;
+    public String getName() {
+        return name;
     }
 
-    public void setOwnername(String ownername) {
-        this.ownername = ownername;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPhone() {
@@ -62,7 +62,7 @@ public class HouseownerInfo {
     public String toString() {
         return "HouseownerInfo{" +
                 "id=" + id +
-                ", ownername='" + ownername + '\'' +
+                ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 '}';
