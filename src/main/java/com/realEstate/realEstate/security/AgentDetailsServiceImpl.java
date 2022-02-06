@@ -15,7 +15,6 @@ public class AgentDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-//        System.out.println("load "+username);
         Agent agent=agentDao.findByEmail(username);
         if(agent==null)
                 throw new UsernameNotFoundException(username+"does NOT exist!");
