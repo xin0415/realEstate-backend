@@ -15,5 +15,8 @@ public class HouseownerInfoService {
         int id=houseownerInfoDao.save(houseownerInfo).getId();
         return new Response(true,String.valueOf(id));
     }
+    public HouseownerInfo getHouseownerInfoById(Integer id){
+        return houseownerInfoDao.findById(id).get();
+    }
 
 }
