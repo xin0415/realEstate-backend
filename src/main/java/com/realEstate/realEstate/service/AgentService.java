@@ -30,7 +30,22 @@ public class AgentService {
         agentDao.save(agent);
         return new Response(true);
     }
-
+    public Response addRole(int id,int role){
+        System.out.println(id + " " + role);
+        Agent agent=agentDao.getById(id);
+        List<Profile> profiles=new ArrayList<Profile>();
+        if(role==3){
+            profiles.add(new Profile(role));
+        }else if(role==2){
+            profiles.add(new Profile(role));
+        }else{
+            profiles.add(new Profile(2));
+            profiles.add(new Profile(role));
+        }
+        agent.setProfiles(profiles);
+        agentDao.save(agent);
+        return new Response(true);
+    }
 //    public Response changePassword(Agent agent, Authentication authentication){
 //        if(agent.getEmail().equals(authentication.getName()))
 //    }

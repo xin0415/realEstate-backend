@@ -18,4 +18,8 @@ public class AgentController {
     public Response addAgent(@RequestBody Agent agent){return agentService.register(agent);}
     @GetMapping
     public List<Agent> getAll(){return agentService.getAll();}
+    @PostMapping("/addrole/{id}/{role}")
+    public Response addRole(@PathVariable int id,@PathVariable int role){
+        return agentService.addRole(id,role);
+    }
 }
