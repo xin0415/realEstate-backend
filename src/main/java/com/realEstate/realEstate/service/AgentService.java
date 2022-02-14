@@ -31,7 +31,6 @@ public class AgentService {
         return new Response(true);
     }
     public Response addRole(int id,int role){
-        System.out.println(id + " " + role);
         Agent agent=agentDao.getById(id);
         List<Profile> profiles=new ArrayList<Profile>();
         if(role==3){
@@ -49,4 +48,7 @@ public class AgentService {
 //    public Response changePassword(Agent agent, Authentication authentication){
 //        if(agent.getEmail().equals(authentication.getName()))
 //    }
+    public Agent getAgentByEmail(String email){
+        return agentDao.findByEmail(email);
+    }
 }

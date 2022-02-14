@@ -22,4 +22,9 @@ public class AgentController {
     public Response addRole(@PathVariable int id,@PathVariable int role){
         return agentService.addRole(id,role);
     }
+    @GetMapping("/getagent/{email}")
+    public Agent getAgent(@PathVariable String email){
+        System.out.println(email);
+        return agentService.getAgentByEmail(email);
+    }
 }
