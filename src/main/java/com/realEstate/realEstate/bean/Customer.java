@@ -25,12 +25,12 @@ public class Customer {
     @Column
     private int agent_id;
     @Column
-    private int status;
+    private String status;
 
     public Customer() {
     }
 
-    public Customer(int id, String name, String phone, String email, String required, int bedroom, int bathroom, int agent_id, int status) {
+    public Customer(int id, String name, String phone, String email, String required, int bedroom, int bathroom, int agent_id, String status) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -106,11 +106,11 @@ public class Customer {
         this.agent_id = agent_id;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
