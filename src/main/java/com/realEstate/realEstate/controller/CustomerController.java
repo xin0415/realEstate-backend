@@ -18,4 +18,8 @@ public class CustomerController {
     public Response save(@RequestBody Customer customer){return customerService.save(customer);}
     @GetMapping
     public List<Customer> getAll(){return customerService.getAll();}
+    @PutMapping
+    public void update(@RequestBody Customer customer){
+        customerService.update(customer);
+    }
 }
