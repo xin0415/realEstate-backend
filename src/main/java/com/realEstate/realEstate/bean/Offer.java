@@ -10,10 +10,10 @@ public class Offer {
     @GeneratedValue(generator = "offer_id_seq_gen",strategy = GenerationType.AUTO)
     private int id;
 
-    @Column
-    private int agent_id;
-    @Column
-    private int customer_id;
+//    @Column
+//    private int agent_id;
+//    @Column
+//    private int customer_id;
     @Column
     private int price;
     @Column
@@ -21,16 +21,22 @@ public class Offer {
     @Column
     private String status;
 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
+    Agent agent;
+
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
+    Customer customer;
+
     public Offer() {
     }
 
-    public Offer(int id, int agent_id, int customer_id, int price, int house_id, String status) {
+    public Offer(int id, int price, int house_id, String status, Agent agent, Customer customer) {
         this.id = id;
-        this.agent_id = agent_id;
-        this.customer_id = customer_id;
         this.price = price;
         this.house_id = house_id;
         this.status = status;
+        this.agent = agent;
+        this.customer = customer;
     }
 
     public int getId() {
@@ -39,22 +45,6 @@ public class Offer {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getAgent_id() {
-        return agent_id;
-    }
-
-    public void setAgent_id(int agent_id) {
-        this.agent_id = agent_id;
-    }
-
-    public int getCustomer_id() {
-        return customer_id;
-    }
-
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
     }
 
     public int getPrice() {
@@ -81,15 +71,31 @@ public class Offer {
         this.status = status;
     }
 
+    public Agent getAgent() {
+        return agent;
+    }
+
+    public void setAgent(Agent agent) {
+        this.agent = agent;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     @Override
     public String toString() {
         return "Offer{" +
                 "id=" + id +
-                ", agent_id=" + agent_id +
-                ", customer_id=" + customer_id +
                 ", price=" + price +
                 ", house_id=" + house_id +
                 ", status='" + status + '\'' +
+                ", agent=" + agent +
+                ", customer=" + customer +
                 '}';
     }
 }
