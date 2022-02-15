@@ -26,4 +26,6 @@ public class OfferController {
     public Response updateOffer(@RequestBody Offer offer){
         return offerService.updateOffer(offer);
     }
+    @GetMapping
+    public List<Offer> getAllOffer(){return offerService.getAll();}
 }

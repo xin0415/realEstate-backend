@@ -27,4 +27,7 @@ public class OfferService {
         offerDao.save(of);
         return new Response(true);
     }
-}
+    public List<Offer> getAll(){
+        return offerDao.findAll();
+    }
+ }
