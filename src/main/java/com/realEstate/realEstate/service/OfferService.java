@@ -22,8 +22,12 @@ public class OfferService {
     }
     public Response updateOffer(Offer offer){
         Offer of=offerDao.getById(offer.getId());
-        of.setStatus(offer.getStatus());
-        of.setPrice(offer.getPrice());
+        if(offer.getStatus()!=null){
+            of.setStatus(offer.getStatus());
+        }
+        if(offer.getPrice()!=0){
+            of.setPrice(offer.getPrice());
+        }
         offerDao.save(of);
         return new Response(true);
     }
