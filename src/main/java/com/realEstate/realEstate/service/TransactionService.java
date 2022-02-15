@@ -25,4 +25,15 @@ public class TransactionService {
     public List<Transaction> getAll(){
         return transactionDao.findAll();
     }
+    public Response updateTransaction(Transaction transaction){
+        Transaction tran=transactionDao.getById(transaction.getId());
+        if(transaction.getStatus()!=null){
+            tran.setStatus(transaction.getStatus());
+        }
+        if(transaction.getCompleteddate()!=null){
+            tran.setCompleteddate(transaction.getCompleteddate());
+        }
+        transactionDao.save(tran);
+        return new Response(true);
+    }
 }

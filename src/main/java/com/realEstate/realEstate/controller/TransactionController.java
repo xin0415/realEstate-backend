@@ -20,4 +20,9 @@ public class TransactionController {
     }
     @GetMapping
     public List<Transaction> getAll(){return transactionService.getAll();}
+
+    @PutMapping
+    public Response updateTransaction(@RequestBody Transaction transaction){
+        return transactionService.updateTransaction(transaction);
+    }
 }
