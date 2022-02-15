@@ -1,6 +1,8 @@
 package com.realEstate.realEstate.service;
 
+import com.realEstate.realEstate.bean.Offer;
 import com.realEstate.realEstate.bean.Transaction;
+import com.realEstate.realEstate.dao.OfferDao;
 import com.realEstate.realEstate.dao.TransactionDao;
 import com.realEstate.realEstate.http.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,11 @@ import java.util.List;
 public class TransactionService {
     @Autowired
     private TransactionDao transactionDao;
-    public Response save(Transaction transaction){
+    @Autowired
+    OfferDao offerDao;
+    public Response save(Transaction transaction,int id){
+        Offer f=offerDao.getById(id);
+        transaction.setOffer(f);
         transactionDao.save(transaction);
         return new Response(true);
     }

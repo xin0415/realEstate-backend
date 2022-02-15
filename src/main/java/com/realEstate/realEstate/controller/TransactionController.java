@@ -14,9 +14,9 @@ public class TransactionController {
     @Autowired
     private TransactionService transactionService;
 
-    @PostMapping
-    public Response save(@RequestBody Transaction transaction){
-        return transactionService.save(transaction);
+    @PostMapping("/{id}")
+    public Response save(@RequestBody Transaction transaction,@PathVariable int id){
+        return transactionService.save(transaction,id);
     }
     @GetMapping
     public List<Transaction> getAll(){return transactionService.getAll();}

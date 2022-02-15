@@ -1,5 +1,7 @@
 package com.realEstate.realEstate.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,25 +14,34 @@ public class Transaction {
     private int id;
     @Column
     private String status;
-    @Column
-    private int agent_id;
-    @Column
-    private int offer_id;
+//    @Column
+//    private int agent_id;
+//    @Column
+//    private int offer_id;
     @Column
     private Date begindate;
     @Column
     private Date completeddate;
 
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
+    Agent agent;
+//    @OneToOne
+//    @JoinColumn(name = "offer_id")
+//    @JsonIgnore
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
+    Offer offer;
+
+
     public Transaction() {
     }
 
-    public Transaction(int id, String status, int agent_id, int offer_id, Date begindate, Date completedate) {
+    public Transaction(int id, String status, Date begindate, Date completeddate, Agent agent, Offer offer) {
         this.id = id;
         this.status = status;
-        this.agent_id = agent_id;
-        this.offer_id = offer_id;
         this.begindate = begindate;
-        this.completeddate = completedate;
+        this.completeddate = completeddate;
+        this.agent = agent;
+        this.offer = offer;
     }
 
     public int getId() {
@@ -49,20 +60,12 @@ public class Transaction {
         this.status = status;
     }
 
-    public int getAgent_id() {
-        return agent_id;
+    public Agent getAgent() {
+        return agent;
     }
 
-    public void setAgent_id(int agent_id) {
-        this.agent_id = agent_id;
-    }
-
-    public int getOffer_id() {
-        return offer_id;
-    }
-
-    public void setOffer_id(int offer_id) {
-        this.offer_id = offer_id;
+    public void setAgent(Agent agent) {
+        this.agent = agent;
     }
 
     public Date getBegindate() {
@@ -81,15 +84,23 @@ public class Transaction {
         this.completeddate = completedate;
     }
 
+    public Offer getOffer() {
+        return offer;
+    }
+
+    public void setOffer(Offer offer) {
+        this.offer = offer;
+    }
+
     @Override
     public String toString() {
         return "Transaction{" +
                 "id=" + id +
                 ", status='" + status + '\'' +
-                ", agent_id=" + agent_id +
-                ", offer_id=" + offer_id +
                 ", begindate=" + begindate +
                 ", completeddate=" + completeddate +
+                ", agent=" + agent +
+                ", offer=" + offer +
                 '}';
     }
 }
