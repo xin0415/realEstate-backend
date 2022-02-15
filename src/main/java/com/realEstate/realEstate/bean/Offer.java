@@ -22,6 +22,9 @@ public class Offer {
     private String status;
 
     @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
+    HouseInfo houseInfo;
+
+    @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
     Agent agent;
 
     @ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.DETACH)
@@ -30,11 +33,12 @@ public class Offer {
     public Offer() {
     }
 
-    public Offer(int id, int price, int house_id, String status, Agent agent, Customer customer) {
+    public Offer(int id, int price, int house_id, String status, HouseInfo houseInfo, Agent agent, Customer customer) {
         this.id = id;
         this.price = price;
         this.house_id = house_id;
         this.status = status;
+        this.houseInfo = houseInfo;
         this.agent = agent;
         this.customer = customer;
     }
@@ -61,6 +65,14 @@ public class Offer {
 
     public void setHouse_id(int house_id) {
         this.house_id = house_id;
+    }
+
+    public HouseInfo getHouseInfo() {
+        return houseInfo;
+    }
+
+    public void setHouseInfo(HouseInfo houseInfo) {
+        this.houseInfo = houseInfo;
     }
 
     public String getStatus() {
@@ -94,6 +106,7 @@ public class Offer {
                 ", price=" + price +
                 ", house_id=" + house_id +
                 ", status='" + status + '\'' +
+                ", houseInfo=" + houseInfo +
                 ", agent=" + agent +
                 ", customer=" + customer +
                 '}';
