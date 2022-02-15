@@ -19,4 +19,9 @@ public class HouseInfoController {
 
     @GetMapping
     public List<HouseInfo> getAll(){return houseInfoService.getAll();}
+
+    @PutMapping
+    public Response updateHouse(@RequestBody HouseInfo houseInfo){
+        return houseInfoService.updateHouse(houseInfo);
+    }
 }

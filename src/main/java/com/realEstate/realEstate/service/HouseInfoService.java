@@ -18,4 +18,12 @@ public class HouseInfoService {
         return new Response(true);
     }
     public List<HouseInfo> getAll(){return houseInfoDao.findAll();}
+    public Response updateHouse(HouseInfo houseInfo){
+        HouseInfo house=houseInfoDao.getById(houseInfo.getId());
+        if(houseInfo.getStatus()!=null){
+            house.setStatus(houseInfo.getStatus());
+        }
+        houseInfoDao.save(house);
+        return new Response(true);
+    }
 }
