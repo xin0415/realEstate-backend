@@ -19,7 +19,7 @@ public class Transaction {
     @Column
     private Date begindate;
     @Column
-    private Date completedate;
+    private Date completeddate;
 
     public Transaction() {
     }
@@ -30,7 +30,7 @@ public class Transaction {
         this.agent_id = agent_id;
         this.offer_id = offer_id;
         this.begindate = begindate;
-        this.completedate = completedate;
+        this.completeddate = completedate;
     }
 
     public int getId() {
@@ -73,12 +73,12 @@ public class Transaction {
         this.begindate = begindate;
     }
 
-    public Date getCompletedate() {
-        return completedate;
+    public Date getCompleteddate() {
+        return completeddate;
     }
 
-    public void setCompletedate(Date completedate) {
-        this.completedate = completedate;
+    public void setCompleteddate(Date completedate) {
+        this.completeddate = completedate;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class Transaction {
                 ", agent_id=" + agent_id +
                 ", offer_id=" + offer_id +
                 ", begindate=" + begindate +
-                ", completedate=" + completedate +
+                ", completeddate=" + completeddate +
                 '}';
     }
 }
