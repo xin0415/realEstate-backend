@@ -20,4 +20,11 @@ public class OfferService {
     public List<Offer> getOfferById(Integer id){
         return offerDao.findAllByHouse_id(id);
     }
+    public Response updateOffer(Offer offer){
+        Offer of=offerDao.getById(offer.getId());
+        of.setStatus(offer.getStatus());
+        of.setPrice(offer.getPrice());
+        offerDao.save(of);
+        return new Response(true);
+    }
 }

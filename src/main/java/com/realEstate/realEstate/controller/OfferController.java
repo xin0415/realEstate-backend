@@ -22,4 +22,8 @@ public class OfferController {
     public List<Offer> getByHouseId(@PathVariable int houseId){
         return offerService.getOfferById(houseId);
     }
+    @PutMapping
+    public Response updateOffer(@RequestBody Offer offer){
+        return offerService.updateOffer(offer);
+    }
 }
