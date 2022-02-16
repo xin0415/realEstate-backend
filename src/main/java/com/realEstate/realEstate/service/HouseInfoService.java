@@ -26,4 +26,9 @@ public class HouseInfoService {
         houseInfoDao.save(house);
         return new Response(true);
     }
+    public Response updateHouseById(HouseInfo houseInfo){
+        houseInfoDao.save(houseInfo);
+//        System.out.println(houseInfo);
+        return new Response(true);
+    }
 }

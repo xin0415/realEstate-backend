@@ -24,4 +24,8 @@ public class HouseInfoController {
     public Response updateHouse(@RequestBody HouseInfo houseInfo){
         return houseInfoService.updateHouse(houseInfo);
     }
+    @PutMapping("/{id}")
+    public Response updateHouseById(@RequestBody HouseInfo houseInfo,@PathVariable int id){
+        return houseInfoService.updateHouseById(houseInfo);
+    }
 }
