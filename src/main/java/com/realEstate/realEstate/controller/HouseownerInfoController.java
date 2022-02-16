@@ -18,4 +18,8 @@ public class HouseownerInfoController {
     public HouseownerInfo getById(@PathVariable int ownerId){
         return houseownerInfoService.getHouseownerInfoById(ownerId);
     }
+    @PutMapping
+    public Response updateOwner(@RequestBody HouseownerInfo houseownerInfo){
+        return houseownerInfoService.updateHouseOwner(houseownerInfo);
+    }
 }

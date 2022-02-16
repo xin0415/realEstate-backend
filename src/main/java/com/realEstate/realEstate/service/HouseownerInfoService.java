@@ -18,5 +18,9 @@ public class HouseownerInfoService {
     public HouseownerInfo getHouseownerInfoById(Integer id){
         return houseownerInfoDao.findById(id).get();
     }
+    public Response updateHouseOwner(HouseownerInfo houseownerInfo){
+        houseownerInfoDao.save(houseownerInfo);
+        return new Response(true);
+    }
 
 }
