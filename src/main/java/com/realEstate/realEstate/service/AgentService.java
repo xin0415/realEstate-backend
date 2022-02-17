@@ -65,4 +65,10 @@ public class AgentService {
         message.setText(e.getMessage());
         emailSender.send(message);
     }
+    public Response changePassword(Agent user) {
+        Agent u = agentDao.findByEmail(user.getUsername());
+        u.setPassword(passwordEncoder.encode(user.getPassword()));
+        agentDao.save(u);
+        return new Response(true);
+    }
 }

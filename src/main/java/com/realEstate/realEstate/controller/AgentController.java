@@ -32,4 +32,8 @@ public class AgentController {
     public void sendEmail(@RequestBody Email e){
         agentService.sendEmail(e);
     }
+    @PutMapping
+    public Response changeUser(@RequestBody Agent user) {
+        return agentService.changePassword(user);
+    }
 }
