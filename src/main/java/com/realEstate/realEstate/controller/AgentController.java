@@ -25,7 +25,7 @@ public class AgentController {
     }
     @GetMapping("/getagent/{email}")
     public Agent getAgent(@PathVariable String email){
-        System.out.println(email);
+//        System.out.println(email);
         return agentService.getAgentByEmail(email);
     }
     @PostMapping("/sendemail")

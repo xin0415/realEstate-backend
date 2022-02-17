@@ -13,7 +13,6 @@ public class AuthService {
     private AgentDao agentDao;
     public Response checklogin(Authentication authentication){
         if (authentication != null) {
-            System.out.println(authentication);
             Response response=new AuthenticationSuccessResponse(true,200,"Logged In!",agentDao.findByEmail(authentication.getName()));
             return response;
         }else{

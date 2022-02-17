@@ -14,7 +14,7 @@ public class AuthController {
 
     @GetMapping("/checklogin")
     public Response checkLogin(Authentication authentication){
-//        System.out.println(authentication);
+//        System.out.println("authcontroller"+authentication);
         return authService.checklogin(authentication);
     }
 }
