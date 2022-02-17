@@ -1,6 +1,7 @@
 package com.realEstate.realEstate.controller;
 
 import com.realEstate.realEstate.bean.Agent;
+import com.realEstate.realEstate.bean.Email;
 import com.realEstate.realEstate.http.Response;
 import com.realEstate.realEstate.service.AgentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,9 @@ public class AgentController {
     public Agent getAgent(@PathVariable String email){
         System.out.println(email);
         return agentService.getAgentByEmail(email);
+    }
+    @PostMapping("/sendemail")
+    public void sendEmail(@RequestBody Email e){
+        agentService.sendEmail(e);
     }
 }

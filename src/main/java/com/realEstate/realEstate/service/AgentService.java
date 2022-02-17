@@ -1,10 +1,13 @@
 package com.realEstate.realEstate.service;
 
 import com.realEstate.realEstate.bean.Agent;
+import com.realEstate.realEstate.bean.Email;
 import com.realEstate.realEstate.bean.Profile;
 import com.realEstate.realEstate.dao.AgentDao;
 import com.realEstate.realEstate.http.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,9 @@ public class AgentService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JavaMailSender emailSender;
 
     public List<Agent> getAll(){return agentDao.findAll();}
 
@@ -50,5 +56,13 @@ public class AgentService {
 //    }
     public Agent getAgentByEmail(String email){
         return agentDao.findByEmail(email);
+    }
+    public void sendEmail(Email e){
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("realestatetest12@outlook.com");
+        message.setTo(e.getEmail());
+        message.setSubject("Appointment");
+        message.setText(e.getMessage());
+        emailSender.send(message);
     }
 }
